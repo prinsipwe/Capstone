@@ -30,6 +30,7 @@
                         <th scope="col" class="text-center txtcolor">Breakfast</th>
                         <th scope="col" class="text-center txtcolor">Lunch</th>
                         <th scope="col" class="text-center txtcolor">Dinner</th>
+						<th scope="col" class="text-center txtcolor"></th>
                     </tr>
                 </thead>    
                 <tbody>
@@ -37,43 +38,50 @@
                         <th scope="row" class="text-center">Sunday</th>
                         <td class="text-center" id="sunday-breakfast" ></td>
                         <td class="text-center" id="sunday-lunch"></td>
-                        <td class="text-center"></td>
+                        <td class="text-center" id="sunday-dinner"></td>
+						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Monday</th>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
+                        <td class="text-center" id="monday-breakfast"></td>
+                        <td class="text-center" id="monday-lunch"></td>
+                        <td class="text-center" id="monday-dinner"></td>
+						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Monday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Tuesday</th>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
+						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Wednesday</th>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
+						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Thursday</th>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
+						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Friday</th>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
+						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Saturday</th>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
                         <td class="text-center"></td>
+						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
                     </tr>
                 </tbody>
             </table>
@@ -92,15 +100,33 @@
         document.getElementById('user-Name').textContent = userName;
         document.getElementById('edad').textContent = age;
         document.getElementById('stat').textContent = bmi;
+		
+		
 
-        const selectedFood = localStorage.getItem('selectedFood');
-        const selectedFoodImage = localStorage.getItem('selectedFoodImage');
-        if (selectedFood && selectedFoodImage) {
-            // Update the respective cell in the table with the selected food and its image
-            document.getElementById('sunday-breakfast').innerHTML = `<img src="${selectedFoodImage}" alt="${selectedFood}" width="100" height="80"><br>${selectedFood}`;
-        }
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const meals = ["breakfast", "lunch", "dinner"];
         
-        
+        days.forEach(day => {
+            meals.forEach(meal => {
+                const selectedFood = localStorage.getItem(`${day}-${meal}-food`);
+                const selectedFoodImage = localStorage.getItem(`${day}-${meal}-image`);
+                if (selectedFood && selectedFoodImage) {
+                    document.getElementById(`${day.toLowerCase()}-${meal}`).innerHTML = 
+                        `<img src="${selectedFoodImage}" alt="${selectedFood}" width="100" height="80"><br>${selectedFood}`;
+                }
+            });
+        });
+		
+				
+		 // Add event listener to all "Select Meals" buttons
+         const selectMealButtons = document.querySelectorAll('.select-meals');
+        selectMealButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const day = button.getAttribute('data-day');
+                localStorage.setItem('selectedDay', day);
+                window.location.href = 'breakfast.html';
+            });
+        });
     </script>
 </body>
 </html>
