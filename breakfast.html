@@ -34,7 +34,7 @@
         </nav>
     </div>
 
-   
+
 
 
     <div class="container">
@@ -42,19 +42,22 @@
             <img src="Breakfast/EggSandwich.jpg" alt="" width="400" height="280">
             <h2 class="foodname">Egg Sandwich</h2>
             <h5 class="info">Calories: eme | Prep Time: eme</h5>
-            <button class="add-to-planner" data-name="Egg Sandwich" data-image="Breakfast/EggSandwich.jpg" >Add to Planner</button>        
+            <button class="add-to-planner" mealName="Egg Sandwich" data-image="Breakfast/EggSandwich.jpg">Add to
+                Planner</button>
         </div>
         <div class="food">
             <img src="Breakfast/TunaSandwich.webp" alt="" width="400" height="280">
             <h2 class="foodname">Tuna Sandwich</h2>
             <h5 class="info">Calories: eme | Prep Time: eme</h5>
-            <button class="add-to-planner" data-name="Tuna  Sandwich">Add to Planner</button>        
+            <button class="add-to-planner" data-name="Tuna Sandwich" data-image="Breakfast/TunaSandwich.webp">Add to
+                Planner</button>
         </div>
         <div class="food">
             <img src="Breakfast/FriedRice.jpg" alt="" width="400" height="280">
             <h2 class="foodname">Fried Rice</h2>
             <h5 class="info">Calories: eme | Prep Time: eme</h5>
-            <button>Add to Planner</button>
+            <button class="add-to-planner" data-name="FriedRice" data-image="Breakfast/FriedRice.jpg">Add to
+                Planner</button>
         </div>
         <div class="food">
             <img src="Breakfast/oatmeal.webp" alt="" width="400" height="280">
@@ -100,22 +103,26 @@
     </div>
 
     <script>
-        // Add event listener to all "Add to Planner" buttons
-        const addToPlannerButtons = document.querySelectorAll('.add-to-planner');
-        addToPlannerButtons.forEach(button => {
+        // Function to store selected meal data
+        function storeMealData(mealName, mealImage, mealTime) {
+            const selectedDay = localStorage.getItem('selectedDay');
+            localStorage.setItem(`${selectedDay}-${mealTime}-food`, mealName);
+            localStorage.setItem(`${selectedDay}-${mealTime}-image`, mealImage);
+            window.location.href = 'planner.html';  // Redirect back to the planner
+        }
+
+        // Add event listeners to "Add to Planner" buttons
+        document.querySelectorAll('.add-to-planner').forEach(button => {
             button.addEventListener('click', function () {
-                // Get food details
-                const foodName = button.getAttribute('data-name');
-                const foodImage = button.getAttribute('data-image');
-                // Store selected food details in localStorage
-                localStorage.setItem('selectedFood', foodName);
-                localStorage.setItem('selectedFoodImage', foodImage);
-                // Redirect to planner page
-                window.location.href = 'planner.html';
+                const mealName = button.getAttribute('data-meal');
+                const mealImage = button.getAttribute('data-image');
+                storeMealData(mealName, mealImage, 'breakfast');
             });
         });
+
 
     </script>
 
 </body>
+
 </html>
