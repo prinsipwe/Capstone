@@ -12,7 +12,7 @@
 
 <body class="bg">
     <div class="container-fluid px-5 mt-5">
-        <h2 class="display4 text-center color font mb-3">Meal Planner</h2>
+        <h2 class="head">Meal Planner</h2>
 
         <div class="information">
             Name: <span id="user-Name"> </span>
@@ -39,60 +39,59 @@
                         <td class="text-center" id="sunday-breakfast" ></td>
                         <td class="text-center" id="sunday-lunch"></td>
                         <td class="text-center" id="sunday-dinner"></td>
-						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
+						<th scope="row" class="text-center"><button class="select-meals" data-day="Sunday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Monday</th>
                         <td class="text-center" id="monday-breakfast"></td>
                         <td class="text-center" id="monday-lunch"></td>
                         <td class="text-center" id="monday-dinner"></td>
-						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Monday" >Add to Planner</button></th>
+						<th scope="row" class="text-center"><button class="select-meals" data-day="Monday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Tuesday</th>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
+                        <td class="text-center" id="tuesday-breakfast"></td>
+                        <td class="text-center" id="tuesday-lunch"></td>
+                        <td class="text-center" id="tuesday-dinner"></td>
+						<th scope="row" class="text-center"><button class="select-meals" data-day="Tuesday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Wednesday</th>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
+                        <td class="text-center" id="wednesday-breakfast"></td>
+                        <td class="text-center" id="wednesday-lunch"></td>
+                        <td class="text-center" id="wednesday-dinner"></td>
+						<th scope="row" class="text-center"><button class="select-meals" data-day="Wednesday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Thursday</th>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
+                        <td class="text-center" id="thursday-breakfast"></td>
+                        <td class="text-center" id="thursday-lunch"></td>
+                        <td class="text-center" id="thursday-dinner"></td>
+						<th scope="row" class="text-center"><button class="select-meals" data-day="Thursday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Friday</th>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
+                        <td class="text-center" id="friday-breakfast"></td>
+                        <td class="text-center" id="friday-lunch"></td>
+                        <td class="text-center" id="friday-dinner"></td>
+						<th scope="row" class="text-center"><button class="select-meals" data-day="Friday" >Add to Planner</button></th>
                     </tr>
                     <tr>
                         <th scope="row" class="text-center">Saturday</th>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-						<th scope="row" class="text-center"><button class="select-meals" id="back-btn" data-day="Sunday" >Add to Planner</button></th>
+                        <td class="text-center" id="saturday-breakfast"></td>
+                        <td class="text-center" id="saturday-lunch"></td>
+                        <td class="text-center" id="saturday-dinner"></td>
+						<th scope="row" class="text-center"><button class="select-meals" data-day="Saturday" >Add to Planner</button></th>
                     </tr>
                 </tbody>
             </table>
             <div class="btn">
                 <a href="breakfast.html"><button id="back-btn">Go To Meals</button></a>
             </div>
-
         </div>
     </div>
     <script>
-
+        // Retrieve user details from localStorage
         const userName = localStorage.getItem('user-Name');
         const age = localStorage.getItem('edad');
         const bmi = localStorage.getItem('stat');
@@ -100,9 +99,8 @@
         document.getElementById('user-Name').textContent = userName;
         document.getElementById('edad').textContent = age;
         document.getElementById('stat').textContent = bmi;
-		
-		
-
+        
+        // Retrieve and display selected meals
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const meals = ["breakfast", "lunch", "dinner"];
         
@@ -116,10 +114,9 @@
                 }
             });
         });
-		
-				
-		 // Add event listener to all "Select Meals" buttons
-         const selectMealButtons = document.querySelectorAll('.select-meals');
+        
+        // Add event listener to all "Select Meals" buttons
+        const selectMealButtons = document.querySelectorAll('.select-meals');
         selectMealButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const day = button.getAttribute('data-day');
