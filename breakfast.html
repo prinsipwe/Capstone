@@ -42,7 +42,7 @@
             <img src="Breakfast/EggSandwich.jpg" alt="" width="400" height="280">
             <h2 class="foodname">Egg Sandwich</h2>
             <h5 class="info">Calories: eme | Prep Time: eme</h5>
-            <button class="add-to-planner" mealName="Egg Sandwich" data-image="Breakfast/EggSandwich.jpg">Add to
+            <button class="add-to-planner" data-name="Egg Sandwich" data-image="Breakfast/EggSandwich.jpg">Add to
                 Planner</button>
         </div>
         <div class="food">
@@ -114,7 +114,7 @@
         // Add event listeners to "Add to Planner" buttons
         document.querySelectorAll('.add-to-planner').forEach(button => {
             button.addEventListener('click', function () {
-                const mealName = button.getAttribute('data-meal');
+                const mealName = button.getAttribute('data-name');
                 const mealImage = button.getAttribute('data-image');
                 storeMealData(mealName, mealImage, 'breakfast');
             });
